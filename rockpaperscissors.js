@@ -5,7 +5,6 @@ function getHumanChoice() {
 
 function getComputerChoice() {
     number = Math.floor(Math.random() * 100)
-    console.log(number)
     let computerChoice = ""
 
     if (1 < number && number <= 33) {
@@ -29,40 +28,56 @@ function getComputerChoice() {
 }
 
 
+let humanScore = 0
+let computerScore = 0 
 
 function playRound(humanChoice, computerChoice) {
-    // logic will go here
+    
     if (humanChoice.toLowerCase() == computerChoice) {
-        console.log("This round is a tie!")
+        console.log("This round is a tie, go again!")
     }
     
     else if (humanChoice.toLowerCase() == "rock" && computerChoice != "paper") {
         humanScore++ 
+        count++
     }
     
     else if (humanChoice.toLowerCase() == "paper" && computerChoice != "scissors") {
         humanScore++ 
+        count++
     }
     
     else if (humanChoice.toLowerCase() == "scissors" && computerChoice != "rock") {
         humanScore++
+        count++
     }
     
     else {
         computerScore++
+        count++
+    }
+    console.log(humanScore, computerScore)
+    return humanScore, computerScore
+}
+
+let count = 0 
+function playGame () {
+    // somehow make this call playRound 5 times
+    // and tally the scores to see who wins at the end
+    while (count < 5 && humanScore < 3 && computerScore < 3) {
+        const humanChoice = getHumanChoice()
+        const computerChoice = getComputerChoice() 
+        playRound(humanChoice, computerChoice)
+    }
+
+    if (humanScore > computerScore) {
+        console.log("You win!")
+    }
+
+    else {
+        console.log("You lose!")
     }
 }
 
-const humanChoice = getHumanChoice()
-const computerChoice = getComputerChoice() 
-
-function playGame () {
-    let humanScore = 0
-    let computerScore = 0 
-    playRound(humanChoice, computerChoice)
-
-    console.log(humanScore, computerScore)
-
-}
-
 playGame()
+
