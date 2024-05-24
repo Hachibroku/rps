@@ -60,24 +60,24 @@ function playRound(humanChoice, computerChoice) {
     return humanScore, computerScore
 }
 
-let count = 0 
-function playGame () {
-    // somehow make this call playRound 5 times
-    // and tally the scores to see who wins at the end
-    while (count < 5 && humanScore < 3 && computerScore < 3) {
-        const humanChoice = getHumanChoice()
-        const computerChoice = getComputerChoice() 
-        playRound(humanChoice, computerChoice)
-    }
+// let count = 0 
+// function playGame () {
+//     // somehow make this call playRound 5 times
+//     // and tally the scores to see who wins at the end
+//     while (count < 5 && humanScore < 3 && computerScore < 3) {
+//         const humanChoice = getHumanChoice()
+//         const computerChoice = getComputerChoice() 
+//         playRound(humanChoice, computerChoice)
+//     }
 
-    if (humanScore > computerScore) {
-        console.log("You win!")
-    }
+//     if (humanScore > computerScore) {
+//         console.log("You win!")
+//     }
 
-    else {
-        console.log("You lose!")
-    }
-}
+//     else {
+//         console.log("You lose!")
+//     }
+// }
 
 playGame()
 
