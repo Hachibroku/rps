@@ -57,27 +57,57 @@ function playRound(humanChoice, computerChoice) {
         count++
     }
     console.log(humanScore, computerScore)
-    return humanScore, computerScore
+    updateScore()
 }
 
-// let count = 0 
-// function playGame () {
-//     // somehow make this call playRound 5 times
-//     // and tally the scores to see who wins at the end
-//     while (count < 5 && humanScore < 3 && computerScore < 3) {
-//         const humanChoice = getHumanChoice()
-//         const computerChoice = getComputerChoice() 
-//         playRound(humanChoice, computerChoice)
-//     }
+let count = 0 
 
-//     if (humanScore > computerScore) {
-//         console.log("You win!")
-//     }
+function playGame (humanChoice, computerChoice) {
 
-//     else {
-//         console.log("You lose!")
-//     }
-// }
+    while (count <= 5 && humanScore < 3 && computerScore < 3) {
+        playRound(humanChoice, computerChoice)
+        break
+    }
 
-playGame()
+    if (humanScore == 3 || (count == 5 && humanScore > computerScore)) {
+        console.log("You win!")
+        result.textContent = "You win!"
+    }
 
+    else if (computerScore == 3 || (count == 5 && computerScore > humanScore)) {
+        console.log("You lose!")
+        result.textContent = "You lose!"
+    }
+}
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", (e) => {
+    const humanChoice = "rock" 
+    const computerChoice = getComputerChoice(); 
+    playGame(humanChoice, computerChoice);
+});
+
+
+paper.addEventListener("click", (e) => {
+    const humanChoice = "paper"
+    const computerChoice = getComputerChoice(); 
+    playGame(humanChoice, computerChoice);
+});
+
+scissors.addEventListener("click", (e) => {
+    const humanChoice = "scissors"
+    const computerChoice = getComputerChoice(); 
+    playGame(humanChoice, computerChoice);
+});
+
+const score = document.querySelector("#score")
+result = document.createElement("p")
+
+function updateScore() {
+    result.textContent = `You: ${humanScore}, Computer: ${computerScore}`
+}
+updateScore();
+score.appendChild(result)
